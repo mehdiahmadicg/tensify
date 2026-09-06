@@ -1,9 +1,10 @@
 **Tensify:**
-
 Tensify is a real-time tension map plugin for Autodesk Maya.  
 It calculates **stretch** and **compression** on your mesh as it deforms, and writes the results to vertex colors.
 
 **Performance Optimizations in Tensify 2:**
+Tensify 2 introduces several performance optimizations for faster and more efficient processing.
+
 - Accelerating Math Operations with AVX
 - Memory Access with CPU Prefetching
 - Implementing Adaptive Multithreading
