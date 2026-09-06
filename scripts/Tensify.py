@@ -1,9 +1,10 @@
 import maya.cmds as cmds
+import maya.api.OpenMaya as om
 
 # Create the Tensify node and attributes 
 sel = cmds.ls(sl=True)
 if not sel:
-    cmds.error("⚠️ Please select a mesh before running the script.")
+    cmds.error("Please select a mesh before running the script.")
 
 obj = sel[0]
 
@@ -57,3 +58,14 @@ for primvar, tensify_attr in attributes.items():
         cmds.connectAttr(src_attr, main_attr, force=True)
     else:
         print(f"Source attribute {src_attr} not found.")
+                
+# Set the 'smoothingRadius' limitation
+sel = om.MSelectionList()
+sel.add(tensify + ".smoothingRadius")
+plug = sel.getPlug(0)
+attr = plug.attribute()
+
+fn = om.MFnNumericAttribute(attr)
+fn.setMin(0)
+fn.setMax(1000)
+     
